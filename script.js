@@ -1,0 +1,3 @@
+// THE LORD IS MY SHEPHERD, I LACK NOTHING
+
+"use strict"
