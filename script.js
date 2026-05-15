@@ -4,19 +4,22 @@
 
 const library = [];
 
-function Book(name, autor, pages) {
+function Book(id, name, autor, pages) {
+  if (!new.target) throw Error(`Must use "new" operator`)
+
+  this.id = id;
   this.name = name;
   this.autor = autor;
   this.pages = pages;
 }
 
 const addBookToLibrary = (name, autor, pages) => {
-  const book = new Book(name, autor, pages);
+  const bookID = crypto.randomUUID();
+  const theBook = new Book(bookID, name, autor, pages);
 
-  library.push(book);
+  library.push(theBook);
 }
+// addBookToLibrary("The Book", "Bookert Bookington", 324);
+// addBookToLibrary("King Book", "Robook Hamilbook", 215);
 
-addBookToLibrary("book name", "autor name", 324);
-addBookToLibrary("book2 name", "autor2", 215);
-
-console.log(library)
+// console.table(library)
