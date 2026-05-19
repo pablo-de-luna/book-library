@@ -53,13 +53,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  background-color: #cecdcd;
+  background-color: #c1bdb0;
   font-family: var(--font-stack);
+}
+
+#main-title {
+  font-size: 10rem;
+  font-weight: bold;
+  font-family: Helvetica, var(--font-stack);
+  color: #3a4633;
+  text-align: center;
 }
 
 #library-container {
   display: flex;
   gap: 20px;
+  width: 900px;
+  margin: auto;
 }
 
 #book-cards-container {
@@ -81,9 +91,24 @@ body {
   height: 180px;
   width: 120px;
   overflow: hidden;
+  border-radius: 7px;
+  border-right: 2px solid #cfcfcf;
+  border-bottom: 1px solid #9b9b9b;
+  box-shadow: 2px 0px 7px gray;
+  transition: 0.2s;
+}
+
+.book-cover:hover {
+  border-right: 4px solid #cfcfcf;
+  border-bottom: 2px solid #9b9b9b;
+  box-shadow: 5px 5px 10px gray;
+  transform: skewY(4deg);
+  transform: skewX(-2deg);
 }
 
 .book-title {
+  margin-top: 5px;
   font-size: 0.8rem;
   font-weight: bold;
+  color: #4b4b4b;
 }
