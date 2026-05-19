@@ -24,10 +24,10 @@ const addBookToLibrary = (title, autor, pages, cover) => {
 
 const addExampleBooks = () => {
   addBookToLibrary("Of Mice and Men", "John Steinback", 107, "of-mice-and-men-cover.jpg");
-  addBookToLibrary("The Call of the Wild", "Jack London", 172);
-  addBookToLibrary("1984", "George Orwell", 298);
-  addBookToLibrary("White Fang", "Jack London", 252);
-  addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", 409);
+  addBookToLibrary("The Call of the Wild", "Jack London", 172, "the-call-of-the-wild-cover.jpg");
+  addBookToLibrary("1984", "George Orwell", 298, "1984-cover.jpg");
+  addBookToLibrary("White Fang", "Jack London", 252, "white-fang-cover.jpg");
+  addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", 409, "12-rules-for-life-cover.jpg");
 };
 
 const createBookCard = (title, cover) => {
@@ -54,11 +54,10 @@ const createBookCard = (title, cover) => {
 };
 
 const assignCover = (cover) => {
-  if (!cover) {
-    return "./assets/images/default-cover.jpg";
-  } else {
-    return `./assets/images/${cover}`;
-  }
+  const defaultCover = "./assets/images/default-cover.jpg";
+  const customCover = `./assets/images/${cover}`;
+
+  return (!cover) ? defaultCover : customCover;
 }
 
 const showBookCards = () => {
