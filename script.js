@@ -2,41 +2,48 @@
 
 "use strict"
 
-const bookCardContainer = document.querySelector("#book-cards-container");
-const newBookButton = document.querySelector("#new-book-card");
-const newBookDialog = document.querySelector("#new-book-dialog");
+const libraryContainer = document.getElementById("library-container");
+const newBookCard = document.getElementById("new-book-card");
+// const newBookDialog = document.getElementById("new-book-dialog");
+const addBookBtn = document.getElementById("add-book-btn");
 
 const library = [];
 const defaultCover = "./assets/images/default-cover.jpg";
 
-function Book(title, autor, pages, cover = defaultCover) {
+function Book(title, author, pages, cover) {
   if (!new.target) throw Error(`Must use "new" operator`)
 
   this.id = crypto.randomUUID();
   this.title = title;
-  this.autor = autor;
+  this.author = author;
   this.pages = pages;
   this.cover = cover;
 }
 
-// CREATE FUNCTION TO ADD NEW BOOK WITH NEW BOOK CARD
-const showDialog = () => {
-  newBookButton.addEventListener("click", () => newBookDialog.showModal())
-};
-showDialog();
-
-const addBookToLibrary = (title, autor, pages, cover) => {
-  const book = new Book(title, autor, pages, cover);
+const addBookToLibrary = (title, author, pages, cover = defaultCover) => {
+  const book = new Book(title, author, pages, cover);
 
   library.push(book);
 };
 
+const createNewBook = () => {
+  addBookBtn.addEventListener("click", e => {
+    e.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+
+    addBookToLibrary(title, author, pages);
+    createBookCard(title, defaultCover);
+  });
+}
+
 const createBookCard = (title, cover) => {
   const bookContainer = document.createElement("div");
-  bookContainer.setAttribute("class", "book-container")
+  bookContainer.setAttribute("class", "book-container");
 
   const bookCover = document.createElement("div");
-  bookCover.setAttribute("class", "book-cover")
+  bookCover.setAttribute("class", "book-cover");
 
   const coverImage = document.createElement("img");
   coverImage.setAttribute("src", cover);
@@ -45,15 +52,14 @@ const createBookCard = (title, cover) => {
   coverImage.setAttribute("width", "120");
 
   const bookTitle = document.createElement("div");
-  bookTitle.setAttribute("class", "book-title")
+  bookTitle.setAttribute("class", "book-title");
   bookTitle.textContent = title;
 
-  bookCover.appendChild(coverImage)
-  bookContainer.appendChild(bookCover)
-  bookContainer.appendChild(bookTitle)
-  bookCardContainer.appendChild(bookContainer);
+  bookCover.appendChild(coverImage);
+  bookContainer.appendChild(bookCover);
+  bookContainer.appendChild(bookTitle);
+  libraryContainer.insertBefore(bookContainer, newBookCard);
 };
-
 
 const showBookCards = () => {
   for(let book of library) {
@@ -69,5 +75,7 @@ const addExampleBooks = () => {
   addBookToLibrary("Michael Strogoff", "Jules Verne", 349, "./assets/images/michael-strogoff-cover.jpg");
 };
 
+// newBookCard.addEventListener("click", () => newBookDialog.showModal());
 addExampleBooks();
+createNewBook();
 showBookCards();

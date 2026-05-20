@@ -67,14 +67,10 @@ body {
 
 #library-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   width: 900px;
   margin: auto;
-}
-
-#book-cards-container {
-  display: flex;
-  gap: 20px;
 }
 
 #new-book-card {
