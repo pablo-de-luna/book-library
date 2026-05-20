@@ -91,7 +91,7 @@ body {
   height: 180px;
   width: 120px;
   overflow: hidden;
-  border-radius: 7px;
+  border-radius: 2px;
   border-right: 2px solid #cfcfcf;
   border-bottom: 1px solid #9b9b9b;
   box-shadow: 2px 0px 7px gray;

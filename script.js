@@ -3,10 +3,13 @@
 "use strict"
 
 const bookCardContainer = document.querySelector("#book-cards-container");
+const newBookButton = document.querySelector("#new-book-card");
+const newBookDialog = document.querySelector("#new-book-dialog");
 
 const library = [];
+const defaultCover = "./assets/images/default-cover.jpg";
 
-function Book(title, autor, pages, cover) {
+function Book(title, autor, pages, cover = defaultCover) {
   if (!new.target) throw Error(`Must use "new" operator`)
 
   this.id = crypto.randomUUID();
@@ -16,18 +19,16 @@ function Book(title, autor, pages, cover) {
   this.cover = cover;
 }
 
+// CREATE FUNCTION TO ADD NEW BOOK WITH NEW BOOK CARD
+const showDialog = () => {
+  newBookButton.addEventListener("click", () => newBookDialog.showModal())
+};
+showDialog();
+
 const addBookToLibrary = (title, autor, pages, cover) => {
   const book = new Book(title, autor, pages, cover);
 
   library.push(book);
-};
-
-const addExampleBooks = () => {
-  addBookToLibrary("Of Mice and Men", "John Steinback", 107, "of-mice-and-men-cover.jpg");
-  addBookToLibrary("The Call of the Wild", "Jack London", 172, "the-call-of-the-wild-cover.jpg");
-  addBookToLibrary("1984", "George Orwell", 298, "1984-cover.jpg");
-  addBookToLibrary("White Fang", "Jack London", 252, "white-fang-cover.jpg");
-  addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", 409, "12-rules-for-life-cover.jpg");
 };
 
 const createBookCard = (title, cover) => {
@@ -38,7 +39,7 @@ const createBookCard = (title, cover) => {
   bookCover.setAttribute("class", "book-cover")
 
   const coverImage = document.createElement("img");
-  coverImage.setAttribute("src", assignCover(cover));
+  coverImage.setAttribute("src", cover);
   coverImage.setAttribute("alt", "book cover image");
   coverImage.setAttribute("height", "180");
   coverImage.setAttribute("width", "120");
@@ -53,17 +54,19 @@ const createBookCard = (title, cover) => {
   bookCardContainer.appendChild(bookContainer);
 };
 
-const assignCover = (cover) => {
-  const defaultCover = "./assets/images/default-cover.jpg";
-  const customCover = `./assets/images/${cover}`;
-
-  return (!cover) ? defaultCover : customCover;
-}
 
 const showBookCards = () => {
   for(let book of library) {
     createBookCard(book.title, book.cover)
   }
+};
+
+const addExampleBooks = () => {
+  addBookToLibrary("Of Mice and Men", "John Steinback", 107, "./assets/images/of-mice-and-men-cover.jpg");
+  addBookToLibrary("The Call of the Wild", "Jack London", 172, "./assets/images/the-call-of-the-wild-cover.jpg");
+  addBookToLibrary("1984", "George Orwell", 298, "./assets/images/1984-cover.jpg");
+  addBookToLibrary("White Fang", "Jack London", 252, "./assets/images/white-fang-cover.jpg");
+  addBookToLibrary("Michael Strogoff", "Jules Verne", 349, "./assets/images/michael-strogoff-cover.jpg");
 };
 
 addExampleBooks();
