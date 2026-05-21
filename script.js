@@ -5,10 +5,13 @@
 const libraryContainer = document.getElementById("library-container");
 const newBookCard = document.getElementById("new-book-card");
 const newBookDialog = document.getElementById("new-book-dialog");
+const BookInfoDialog = document.getElementById("book-info-dialog");
 const addBookBtn = document.getElementById("add-book-btn");
 
 const library = [];
 const defaultCover = "./assets/images/default-cover.jpg";
+
+let bookCards;
 
 function Book(title, author, pages, cover) {
   if (!new.target) throw Error(`Must use "new" operator`)
@@ -35,14 +38,18 @@ const createNewBook = () => {
     const cover = document.getElementById("cover").files[0];
 
     addBookToLibrary(title, author, pages);
-    createBookCard(title, cover);
+
+    const bookId = library.at(-1).id;
+    createBookCard(title, cover, bookId);
     newBookDialog.close();
+    updateAndShowInfoDialog();
   });
 }
     
-const createBookCard = (title, cover = defaultCover) => {
+const createBookCard = (title, cover = defaultCover, bookId) => {
   const bookContainer = document.createElement("div");
   bookContainer.setAttribute("class", "book-container");
+  bookContainer.setAttribute("data-id", bookId)
 
   const bookCover = document.createElement("div");
   bookCover.setAttribute("class", "book-cover");
@@ -74,8 +81,24 @@ const createBookCard = (title, cover = defaultCover) => {
 
 const showBookCards = () => {
   for(let book of library) {
-    createBookCard(book.title, book.cover)
+    createBookCard(book.title, book.cover, book.id)
   }
+};
+
+const updateAndShowInfoDialog = () => {
+  const bookCards = document.querySelectorAll(".book-container");
+
+  bookCards.forEach(bookElem => {
+    bookElem.addEventListener("click", () => {
+      const bookObj = library.find(obj => obj.id === bookElem.dataset.id);
+
+      document.getElementById("info-title").textContent = bookObj.title;
+      document.getElementById("info-author").textContent = bookObj.author;
+      document.getElementById("info-pages").textContent = bookObj.pages;
+
+      BookInfoDialog.showModal();
+    });
+  });
 };
 
 const addExampleBooks = () => {
@@ -90,3 +113,4 @@ newBookCard.addEventListener("click", () => newBookDialog.showModal());
 addExampleBooks();
 createNewBook();
 showBookCards();
+updateAndShowInfoDialog();

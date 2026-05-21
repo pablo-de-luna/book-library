@@ -78,7 +78,8 @@ body {
   justify-content: center;
   align-items: center;
   border: 1px dashed #696969;
-  font-size: 20px;
+  font-size: 1.3rem;
+  color: #4b4b4b;
   width: 120px;
   height: 180px;
 }
@@ -107,4 +108,19 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
   color: #4b4b4b;
+}
+
+dialog {
+  border: 1px solid gray;
+  background-color: #e3dfd2;
+  outline: none;
+}
+
+#book-info-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#info-cover {
+  border: 1px dashed gray;
 }
