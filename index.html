@@ -17,8 +17,8 @@
 
   </main>
 
-  <!-- <dialog id="new-book-dialog" closedby="closerequest"> -->
-    <form id="new-book-form">
+  <dialog id="new-book-dialog" closedby="closerequest">
+    <form id="new-book-form" method="dialog">
       <div>
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
@@ -31,8 +31,12 @@
         <label for="pages">Pages</label>
         <input type="number" name="pages" id="pages">
       </div>
+      <div>
+        <label for="cover">Cover Image</label>
+        <input type="file" name="cover" id="cover" accept="image/*,.jpg">
+      </div>
       <button type="submit" id="add-book-btn">Add new book</button>
     </form>
-  <!-- </dialog> -->
+  </dialog>
 </body>
 </html>

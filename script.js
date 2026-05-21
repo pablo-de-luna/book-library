@@ -4,7 +4,7 @@
 
 const libraryContainer = document.getElementById("library-container");
 const newBookCard = document.getElementById("new-book-card");
-// const newBookDialog = document.getElementById("new-book-dialog");
+const newBookDialog = document.getElementById("new-book-dialog");
 const addBookBtn = document.getElementById("add-book-btn");
 
 const library = [];
@@ -31,14 +31,16 @@ const createNewBook = () => {
     e.preventDefault();
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
+    const pages = Number(document.getElementById("pages").value);
+    const cover = document.getElementById("cover").files[0];
 
     addBookToLibrary(title, author, pages);
-    createBookCard(title, defaultCover);
+    createBookCard(title, cover);
+    newBookDialog.close();
   });
 }
-
-const createBookCard = (title, cover) => {
+    
+const createBookCard = (title, cover = defaultCover) => {
   const bookContainer = document.createElement("div");
   bookContainer.setAttribute("class", "book-container");
 
@@ -46,7 +48,16 @@ const createBookCard = (title, cover) => {
   bookCover.setAttribute("class", "book-cover");
 
   const coverImage = document.createElement("img");
-  coverImage.setAttribute("src", cover);
+  if (typeof cover == "string") {
+    coverImage.setAttribute("src", cover);
+  } else {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      coverImage.src = reader.result;
+    });
+    
+    if (cover) reader.readAsDataURL(cover);
+  }
   coverImage.setAttribute("alt", "book cover image");
   coverImage.setAttribute("height", "180");
   coverImage.setAttribute("width", "120");
@@ -75,7 +86,7 @@ const addExampleBooks = () => {
   addBookToLibrary("Michael Strogoff", "Jules Verne", 349, "./assets/images/michael-strogoff-cover.jpg");
 };
 
-// newBookCard.addEventListener("click", () => newBookDialog.showModal());
+newBookCard.addEventListener("click", () => newBookDialog.showModal());
 addExampleBooks();
 createNewBook();
 showBookCards();
