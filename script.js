@@ -8,6 +8,7 @@ const newBookDialog = document.getElementById("new-book-dialog");
 const bookInfoDialog = document.getElementById("book-info-dialog");
 const addBookBtn = document.getElementById("add-book-btn");
 const deleteBtn = document.getElementById("delete-book");
+const readStatusBtn = document.getElementById("read-status-btn");
 
 const defaultCover = "./assets/images/default-cover.jpg";
 const library = [];
@@ -27,6 +28,17 @@ function Book(title, author, pages, cover, readStatus) {
 
 Book.prototype.toggleStatus = function() {
   (!this.readStatus) ? this.readStatus = true : this.readStatus = false;
+};
+
+const handleReadStatusButton = () => {
+  readStatusBtn.addEventListener("click", () => {
+    library.forEach(bookObj => {
+      if (bookObj.id === bookInfoDialog.dataset.id) {
+        bookObj.toggleStatus();
+        return;
+      }
+    });
+  });
 };
 
 const addExampleBooks = () => {
@@ -172,6 +184,7 @@ const initializeLibrary = () => {
   showBookCards();
   updateAndShowInfoDialog();
   deleteBookWithBtn();
+  handleReadStatusButton();
 };
 
 initializeLibrary();
