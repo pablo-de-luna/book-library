@@ -14,7 +14,7 @@ const library = [];
 
 let bookCards;
 
-function Book(title, author, pages, cover) {
+function Book(title, author, pages, cover, readStatus) {
   if (!new.target) throw Error(`Must use "new" operator`)
 
   this.id = crypto.randomUUID();
@@ -22,17 +22,27 @@ function Book(title, author, pages, cover) {
   this.author = author;
   this.pages = pages;
   this.cover = cover;
+  this.readStatus = readStatus;
 }
 
+Book.prototype.toggleStatus = function() {
+  (!this.readStatus) ? this.readStatus = true : this.readStatus = false;
+};
+
 const addExampleBooks = () => {
-  exampleBooks.forEach(({ title, author, pages, cover }) => {
-    addBookToLibrary(title, author, pages, cover);
+  exampleBooks.forEach(book => {
+    addBookToLibrary(
+      book.title,
+      book.author,
+      book.pages,
+      book.cover,
+      book.readStatus,
+    );
   });
 };
 
-
-const addBookToLibrary = (title, author, pages, cover = defaultCover) => {
-  const book = new Book(title, author, pages, cover);
+const addBookToLibrary = (title, author, pages, cover = defaultCover, readStatus) => {
+  const book = new Book(title, author, pages, cover, readStatus);
 
   library.push(book);
 };
