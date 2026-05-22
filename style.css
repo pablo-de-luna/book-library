@@ -120,7 +120,3 @@ dialog {
   display: flex;
   flex-wrap: wrap;
 }
-
-#info-cover {
-  border: 1px dashed gray;
-}

@@ -40,6 +40,7 @@ const createNewBook = () => {
     addBookToLibrary(title, author, pages);
 
     const bookId = library.at(-1).id;
+
     createBookCard(title, cover, bookId);
     newBookDialog.close();
     updateAndShowInfoDialog();
@@ -61,6 +62,7 @@ const createBookCard = (title, cover = defaultCover, bookId) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       coverImage.src = reader.result;
+      library.at(-1).cover = reader.result;
     });
     
     if (cover) reader.readAsDataURL(cover);
@@ -95,6 +97,7 @@ const updateAndShowInfoDialog = () => {
       document.getElementById("info-title").textContent = bookObj.title;
       document.getElementById("info-author").textContent = bookObj.author;
       document.getElementById("info-pages").textContent = bookObj.pages;
+      document.getElementById("info-cover").setAttribute("src", bookObj.cover);
 
       BookInfoDialog.showModal();
     });
