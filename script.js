@@ -44,12 +44,13 @@ const createNewBook = () => {
     const author = document.getElementById("author").value;
     const pages = Number(document.getElementById("pages").value);
     const cover = document.getElementById("cover").files[0];
+    let bookId;
 
     addBookToLibrary(title, author, pages);
-
-    const bookId = library.at(-1).id;
-
+    
+    bookId = library.at(-1).id;
     createBookCard(title, cover, bookId);
+    document.getElementById("new-book-form").reset();
     newBookDialog.close();
     updateAndShowInfoDialog();
   });

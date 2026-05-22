@@ -12,12 +12,6 @@ const exampleBooks = [
     cover: "./assets/images/the-call-of-the-wild-cover.jpg",
   },
   {
-    title: "1984",
-    author: "George Orwell",
-    pages: 298,
-    cover: "./assets/images/1984-cover.jpg",
-  },
-  {
     title: "White Fang",
     author: "Jack London",
     pages: 252,
@@ -34,5 +28,35 @@ const exampleBooks = [
     author: "Mark Haddon",
     pages: 226,
     cover: "./assets/images/the-curious-incident-cover.jpg",
+  },
+  {
+    title: "The Old Man and the Sea",
+    author: "Ernest Hemingway",
+    pages: 128,
+    cover: "./assets/images/the-old-man-and-the-sea-cover.jpg",
+  },
+  {
+    title: "Film Directing Shot by Shot: Visualizing from Concept to Screen",
+    author: "Steven D. Katz",
+    pages: 366,
+    cover: "./assets/images/film-directing-cover.jpg",
+  },
+  {
+    title: "Fahrenheit 451",
+    author: "Ray Bradbury",
+    pages: 249,
+    cover: "./assets/images/fahrenheit-451-cover.jpg",
+  },
+  {
+    title: "The Conversations: Walter Murch and the Art of Editing Film",
+    author: "Michael Ondaatje",
+    pages: 368,
+    cover: "./assets/images/the-conversations-cover.jpg",
+  },
+  {
+    title: "Starship Troopers",
+    author: "Robert A. Heinlein",
+    pages: 264,
+    cover: "./assets/images/starship-troopers-cover.jpg",
   },
 ];
