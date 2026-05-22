@@ -114,9 +114,9 @@ const updateAndShowInfoDialog = () => {
 };
 
 const deleteBookWithBtn = () => {
-  const bookCards = document.querySelectorAll(".book-container");
-
   deleteBtn.addEventListener("click", () => {
+    const bookCards = document.querySelectorAll(".book-container");
+
     for (let i = 0; i < library.length; i++) {
       if (library[i].id === bookInfoDialog.dataset.id) {
         library.splice(i, 1);
