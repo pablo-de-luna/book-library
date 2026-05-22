@@ -5,8 +5,9 @@
 const libraryContainer = document.getElementById("library-container");
 const newBookCard = document.getElementById("new-book-card");
 const newBookDialog = document.getElementById("new-book-dialog");
-const BookInfoDialog = document.getElementById("book-info-dialog");
+const bookInfoDialog = document.getElementById("book-info-dialog");
 const addBookBtn = document.getElementById("add-book-btn");
+const deleteBtn = document.getElementById("delete-book");
 
 const defaultCover = "./assets/images/default-cover.jpg";
 const library = [];
@@ -105,9 +106,31 @@ const updateAndShowInfoDialog = () => {
       document.getElementById("info-author").textContent = bookObj.author;
       document.getElementById("info-pages").textContent = bookObj.pages;
       document.getElementById("info-cover").setAttribute("src", bookObj.cover);
+      bookInfoDialog.setAttribute("data-id", bookObj.id)
 
-      BookInfoDialog.showModal();
+      bookInfoDialog.showModal();
     });
+  });
+};
+
+const deleteBookWithBtn = () => {
+  const bookCards = document.querySelectorAll(".book-container");
+
+  deleteBtn.addEventListener("click", () => {
+    for (let i = 0; i < library.length; i++) {
+      if (library[i].id === bookInfoDialog.dataset.id) {
+        library.splice(i, 1);
+        
+        bookCards.forEach(bookElem => {
+          if (bookElem.dataset.id === bookInfoDialog.dataset.id) {
+            bookElem.remove();
+          }
+        });
+
+        bookInfoDialog.close();
+        break;
+      }
+    }
   });
 };
 
@@ -117,6 +140,7 @@ const initializeLibrary = () => {
   createNewBook();
   showBookCards();
   updateAndShowInfoDialog();
+  deleteBookWithBtn();
 };
 
 initializeLibrary();

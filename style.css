@@ -105,9 +105,14 @@ body {
 
 .book-title {
   margin-top: 5px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: bold;
   color: #4b4b4b;
+  max-width: 120px;
+  max-height: 2lh;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 dialog {
