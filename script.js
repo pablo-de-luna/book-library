@@ -55,32 +55,37 @@ const createNewBook = () => {
   });
 }
     
+const setBookCover = (coverImage, cover) => {
+  if (typeof cover === "string") {
+    coverImage.setAttribute("src", cover);
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    coverImage.setAttribute("src", reader.result);
+    library.at(-1).cover = reader.result;
+  });
+
+  reader.readAsDataURL(cover);
+};
+
 const createBookCard = (title, cover = defaultCover, bookId) => {
   const bookContainer = document.createElement("div");
+  const bookCover = document.createElement("div");
+  const bookTitle = document.createElement("div");
+  const coverImage = document.createElement("img");
+
+  setBookCover(coverImage, cover);
+
   bookContainer.setAttribute("class", "book-container");
   bookContainer.setAttribute("data-id", bookId)
-
-  const bookCover = document.createElement("div");
   bookCover.setAttribute("class", "book-cover");
-
-  const coverImage = document.createElement("img");
-  if (typeof cover == "string") {
-    coverImage.setAttribute("src", cover);
-  } else {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      coverImage.src = reader.result;
-      library.at(-1).cover = reader.result;
-    });
-    
-    if (cover) reader.readAsDataURL(cover);
-  }
+  bookTitle.setAttribute("class", "book-title");
   coverImage.setAttribute("alt", "book cover image");
   coverImage.setAttribute("height", "180");
   coverImage.setAttribute("width", "120");
 
-  const bookTitle = document.createElement("div");
-  bookTitle.setAttribute("class", "book-title");
   bookTitle.textContent = title;
 
   bookCover.appendChild(coverImage);
@@ -134,9 +139,24 @@ const deleteBookWithBtn = () => {
   });
 };
 
-const initializeLibrary = () => {
+const showNewBookDialog = () => {
   newBookCard.addEventListener("click", () => newBookDialog.showModal());
+};
+
+const closeDialog = () => {
+  const closeDialogButtons = document.querySelectorAll(".close-dialog-btn");
+
+  closeDialogButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      button.parentElement.close();
+    });
+  })
+}
+
+const initializeLibrary = () => {
   addExampleBooks();
+  showNewBookDialog();
+  closeDialog();
   createNewBook();
   showBookCards();
   updateAndShowInfoDialog();
