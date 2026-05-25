@@ -41,6 +41,18 @@ const handleReadStatusButton = () => {
   });
 };
 
+const setReadStatusTag = () => {
+  const statusTags = document.querySelectorAll(".status-tag");
+
+  statusTags.forEach(tag => {
+    const status = library.find(book => (book.id === tag.parentElement.dataset.id)).readStatus;
+
+    if (status) {
+      tag.className = "read-status-tag"
+    }
+  });
+}
+
 const addExampleBooks = () => {
   exampleBooks.forEach(book => {
     addBookToLibrary(
@@ -75,6 +87,7 @@ const createNewBook = () => {
     document.getElementById("new-book-form").reset();
     newBookDialog.close();
     updateAndShowInfoDialog();
+    setBookCover();
   });
 }
     
@@ -90,7 +103,7 @@ const setBookCover = (coverImage, cover) => {
     library.at(-1).cover = reader.result;
   });
 
-  reader.readAsDataURL(cover);
+  if (cover) reader.readAsDataURL(cover);
 };
 
 const createBookCard = (title, cover = defaultCover, bookId) => {
@@ -98,19 +111,22 @@ const createBookCard = (title, cover = defaultCover, bookId) => {
   const bookCover = document.createElement("div");
   const bookTitle = document.createElement("div");
   const coverImage = document.createElement("img");
+  const statusTag = document.createElement("span");
 
   setBookCover(coverImage, cover);
 
-  bookContainer.setAttribute("class", "book-container");
+  bookContainer.className = "book-container";
   bookContainer.setAttribute("data-id", bookId)
-  bookCover.setAttribute("class", "book-cover");
-  bookTitle.setAttribute("class", "book-title");
+  bookCover.className = "book-cover";
+  bookTitle.className = "book-title";
   coverImage.setAttribute("alt", "book cover image");
   coverImage.setAttribute("height", "180");
   coverImage.setAttribute("width", "120");
+  statusTag.className = "status-tag";
 
   bookTitle.textContent = title;
 
+  bookContainer.appendChild(statusTag);
   bookCover.appendChild(coverImage);
   bookContainer.appendChild(bookCover);
   bookContainer.appendChild(bookTitle);
@@ -185,6 +201,7 @@ const initializeLibrary = () => {
   updateAndShowInfoDialog();
   deleteBookWithBtn();
   handleReadStatusButton();
+  setReadStatusTag();
 };
 
 initializeLibrary();
