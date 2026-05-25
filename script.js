@@ -40,6 +40,7 @@ const handleReadStatusButton = () => {
     });
 
     setReadStatusTag();
+    bookInfoDialog.close();
   });
 };
 
@@ -154,7 +155,15 @@ const updateAndShowInfoDialog = () => {
       document.getElementById("info-author").textContent = bookObj.author;
       document.getElementById("info-pages").textContent = bookObj.pages;
       document.getElementById("info-cover").setAttribute("src", bookObj.cover);
-      bookInfoDialog.setAttribute("data-id", bookObj.id)
+      bookInfoDialog.setAttribute("data-id", bookObj.id);
+      
+      if (bookObj.readStatus) {
+        document.getElementById("info-status").textContent = "read";
+        readStatusBtn.textContent = "Mark as unread"
+      } else {
+        document.getElementById("info-status").textContent = "unread";
+        readStatusBtn.textContent = "Mark as read"
+      }
 
       bookInfoDialog.showModal();
     });
