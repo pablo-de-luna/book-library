@@ -3,10 +3,10 @@
 "use strict"
 
 const libraryContainer = document.getElementById("library-container");
+const newBookForm = document.getElementById("new-book-form");
 const newBookCard = document.getElementById("new-book-card");
 const newBookDialog = document.getElementById("new-book-dialog");
 const bookInfoDialog = document.getElementById("book-info-dialog");
-const addBookBtn = document.getElementById("add-book-btn");
 const deleteBtn = document.getElementById("delete-book");
 const readStatusBtn = document.getElementById("read-status-btn");
 
@@ -77,8 +77,9 @@ const addBookToLibrary = (title, author, pages, cover = defaultCover, readStatus
 };
 
 const createNewBook = () => {
-  addBookBtn.addEventListener("click", e => {
+  newBookForm.addEventListener("submit", e => {
     e.preventDefault();
+
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = Number(document.getElementById("pages").value);
@@ -94,7 +95,7 @@ const createNewBook = () => {
     newBookDialog.close();
     updateAndShowInfoDialog();
     setBookCover();
-    setReadStatusTag()
+    setReadStatusTag();
   });
 }
     
