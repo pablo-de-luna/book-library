@@ -38,6 +38,8 @@ const handleReadStatusButton = () => {
         return;
       }
     });
+
+    setReadStatusTag();
   });
 };
 
@@ -46,12 +48,14 @@ const setReadStatusTag = () => {
 
   statusTags.forEach(tag => {
     const status = library.find(book => (book.id === tag.parentElement.dataset.id)).readStatus;
-
+    
     if (status) {
-      tag.className = "read-status-tag"
+      tag.classList.add("read");
+    } else {
+      tag.classList.remove("read");
     }
   });
-}
+};
 
 const addExampleBooks = () => {
   exampleBooks.forEach(book => {
