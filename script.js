@@ -82,10 +82,11 @@ const createNewBook = () => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = Number(document.getElementById("pages").value);
+    const status = document.getElementById("status").checked;
     const cover = document.getElementById("cover").files[0];
     let bookId;
 
-    addBookToLibrary(title, author, pages);
+    addBookToLibrary(title, author, pages, cover, status);
     
     bookId = library.at(-1).id;
     createBookCard(title, cover, bookId);
@@ -93,6 +94,7 @@ const createNewBook = () => {
     newBookDialog.close();
     updateAndShowInfoDialog();
     setBookCover();
+    setReadStatusTag()
   });
 }
     
