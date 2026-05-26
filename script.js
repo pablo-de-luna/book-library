@@ -48,7 +48,9 @@ const setReadStatusTag = () => {
   const statusTags = document.querySelectorAll(".status-tag");
 
   statusTags.forEach(tag => {
-    const status = library.find(book => (book.id === tag.parentElement.dataset.id)).readStatus;
+    const status = library
+      .find(book => (book.id === tag.parentElement.dataset.id))
+      .readStatus;
     
     if (status) {
       tag.classList.add("read");
@@ -70,7 +72,8 @@ const addExampleBooks = () => {
   });
 };
 
-const addBookToLibrary = (title, author, pages, cover = defaultCover, readStatus) => {
+const addBookToLibrary = 
+  (title, author, pages, cover = defaultCover, readStatus) => {
   const book = new Book(title, author, pages, cover, readStatus);
 
   library.push(book);
