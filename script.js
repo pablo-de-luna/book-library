@@ -164,10 +164,10 @@ const updateAndShowInfoDialog = () => {
       bookInfoDialog.setAttribute("data-id", bookObj.id);
       
       if (bookObj.readStatus) {
-        document.getElementById("info-status").textContent = "read";
+        document.getElementById("info-status").textContent = "Read";
         readStatusBtn.textContent = "Mark as unread"
       } else {
-        document.getElementById("info-status").textContent = "unread";
+        document.getElementById("info-status").textContent = "Unread";
         readStatusBtn.textContent = "Mark as read"
       }
 

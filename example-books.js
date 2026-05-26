@@ -42,7 +42,7 @@ const exampleBooks = [
     readStatus: true,
   },
   {
-    title: "Film Directing Shot by Shot: Visualizing from Concept to Screen",
+    title: "Film Directing Shot by Shot",
     author: "Steven D. Katz",
     pages: 366,
     cover: "./assets/images/film-directing-cover.jpg",
@@ -56,7 +56,7 @@ const exampleBooks = [
     readStatus: false,
   },
   {
-    title: "The Conversations: Walter Murch and the Art of Editing Film",
+    title: "The Conversations",
     author: "Michael Ondaatje",
     pages: 368,
     cover: "./assets/images/the-conversations-cover.jpg",
