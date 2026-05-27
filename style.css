@@ -65,7 +65,9 @@ main {
   width: 75vw;
   min-height: 100vh;
   margin: auto;
-  box-shadow: 0 0 15px #685c4c;
+  border-right: 3px solid #655436;
+  border-left: 3px solid #655436;
+  box-shadow: 0 0 15px #655436;
 }
 
 #main-title {
@@ -75,6 +77,8 @@ main {
   color: #3a4633;
   opacity: 60%;
   text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #library-container {
@@ -110,14 +114,14 @@ main {
   border-radius: 2px;
   border-right: 2px solid #cfcfcf;
   border-bottom: 1px solid #9b9b9b;
-  box-shadow: 2px 0px 7px gray;
+  box-shadow: 2px 0px 7px #766854;
   transition: 0.2s;
 }
 
 .book-cover:hover {
   border-right: 4px solid #cfcfcf;
   border-bottom: 2px solid #9b9b9b;
-  box-shadow: 5px 5px 10px gray;
+  box-shadow: 5px 5px 10px #766854;
   transform: skewY(4deg);
   transform: skewX(-2deg);
 }
@@ -135,45 +139,124 @@ main {
 }
 
 dialog {
-  border: 1px solid gray;
+  border: 1px solid #131313;
   border-radius: 5px;
   background-image: url("./assets/images/paper-texture.jpg");
   background-size: 80%;
   outline: none;
   font-family: Helvetica, var(--font-stack);
   position: relative;
+  box-shadow: 3px 3px 15px #302d26;
+}
+
+#new-book-dialog {
+  position: relative;
 }
 
 .close-dialog-btn {
+  appearance: none;
+  border: none;
+  background: none; 
+  font-size: 1.1rem;
   position: absolute;
   top: 16px;
   right: 20px;
-  font-size: 1.1rem;
-  color: rgb(221, 215, 206);
-  appearance: none;
-  border: none;
-  background: none;
+  color: #ddd7ce;
 }
 
 .close-dialog-btn:hover {
-  color: #e19f9f;
+  color: #ffabab;
 }
 
 .close-dialog-btn:focus-visible {
   outline: none;
 }
 
+#new-book-form {
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #131313;
+  border-radius: 5px;
+  background-color: #33463c;
+  color: #e1dfd8;
+  font-size: 0.8rem;
+  width: 460px;
+  min-height: 180px;
+  padding: 15px 25px 15px 35px;
+  gap: 15px;
+}
+
+#new-book-form > div {
+  display: flex;
+  gap: 5px;
+}
+
+label {
+  min-width: 75px;
+  margin-top: 2px;
+}
+
+.text-input-container {
+  width: 100%;
+}
+
+#pages-input-container {
+  width: 247px;
+}
+
+input {
+  border-radius: 5px;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 75%;
+  appearance: none;
+  border: 1px solid #505e50;
+  background-color: #27362e;
+  color: #e1dfd8;
+}
+
+input[type="file"]::file-selector-button {
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  padding: 3.4px 10px;
+  background-color: #27362e;
+  color: #e1dfd8;
+}
+
+#new-book-dialog button[type="submit"] {
+  width: 95%;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #252525;
+  color: #e1dfd8;
+}
+
+#new-book-dialog button[type="submit"]:hover {
+  background-color: #e0dcd5;
+  color: #252525;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid rgb(123, 145, 123);
+  background-color: #31443a; 
+}
+
 #info-cover {
   border-radius: 5px;
-  border: 1px solid black;
+  border: 2px solid #131313;
   height: 180px;
   width: 120px;
 }
 
 #info-section {
-  border: 1px solid black;
+  border: 2px solid #131313;
   border-radius: 5px;
-  background-color: #3a4633;
+  background-color: #33463c;
   color: #e1dfd8;
   width: 350px;
   min-height: 180px;
@@ -206,6 +289,12 @@ dialog {
   font-weight: bold;
   background-color: #252525;
   color: #e0dcd5;
+  transition: 0.3s;
+}
+
+#info-buttons > button:hover {
+  background-color: #e0dcd5;
+  color: #252525;
 }
 
 .read::before {
