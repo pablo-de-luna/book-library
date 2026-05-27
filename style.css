@@ -212,6 +212,7 @@ input[type="number"],
 input[type="text"] {
   width: 75%;
   appearance: none;
+  padding: 2px 7px;
   border: 1px solid #505e50;
   background-color: #27362e;
   color: #e1dfd8;
@@ -224,6 +225,11 @@ input[type="file"]::file-selector-button {
   padding: 3.4px 10px;
   background-color: #27362e;
   color: #e1dfd8;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #e0dcd5;
+  color: #252525;
 }
 
 #new-book-dialog button[type="submit"] {
@@ -244,6 +250,10 @@ input:focus {
   outline: none;
   border: 1px solid rgb(123, 145, 123);
   background-color: #31443a; 
+}
+
+input:user-invalid {
+  border: 1px solid #bb5a5a;
 }
 
 #info-cover {

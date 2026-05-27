@@ -198,7 +198,10 @@ const deleteBookWithBtn = () => {
 };
 
 const showNewBookDialog = () => {
-  newBookCard.addEventListener("click", () => newBookDialog.showModal());
+  newBookCard.addEventListener("click", () => {
+    newBookDialog.showModal();
+    newBookForm.reset();
+  });
 };
 
 const closeDialog = () => {
