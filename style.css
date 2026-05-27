@@ -180,9 +180,9 @@ dialog {
   background-color: #33463c;
   color: #e1dfd8;
   font-size: 0.8rem;
-  width: 460px;
+  max-width: 460px;
   min-height: 180px;
-  padding: 15px 25px 15px 35px;
+  padding: 15px 35px 15px 25px;
   gap: 15px;
 }
 
@@ -201,7 +201,7 @@ label {
 }
 
 #pages-input-container {
-  width: 247px;
+  flex: 1;
 }
 
 input {
@@ -210,12 +210,16 @@ input {
 
 input[type="number"],
 input[type="text"] {
-  width: 75%;
+  width: 100%;
   appearance: none;
   padding: 2px 7px;
   border: 1px solid #505e50;
   background-color: #27362e;
   color: #e1dfd8;
+}
+
+input[type="file"] {
+  width: 100%;
 }
 
 input[type="file"]::file-selector-button {
@@ -233,7 +237,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 #new-book-dialog button[type="submit"] {
-  width: 95%;
+  width: 100%;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
